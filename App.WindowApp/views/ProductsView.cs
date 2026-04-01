@@ -48,36 +48,40 @@ namespace App.WindowApp.views
         private void ProductsView_Load(object sender, EventArgs e)
         {
             cmbCategory.Items.Clear();
-            cmbCategory.Items.Add("~~ALL~~");
-            cmbCategory.Items.AddRange(Enum.GetNames(typeof(ProductsCategoryEnum)));
+            var categories = new List<object> { "~~ALL" };
+            categories.AddRange(Enum.GetValues(typeof(ProductsCategoryEnum)));
+            cmbCategory.DataSource = categories;
             cmbCategory.SelectedIndex = 0;
 
             cmbStatus.Items.Clear();
-            cmbStatus.Items.Add("~~ALL~~");
-            cmbStatus.Items.AddRange(Enum.GetNames(typeof(ProductsStatusEnum)));
+            var status = new List<object> { "~~ALL" };
+            status.AddRange(Enum.GetValues(typeof(ProductsCategoryEnum)));
+            cmbStatus.DataSource = status;
             cmbStatus.SelectedIndex = 0;
 
 
             if (_service == null)
                 return;
-            _service.GetAll();
+            //_service.GetAll();
 
             _dgvBindingSource.DataSource = _service.GetAll();
         }
 
         private void add_Click(object sender, EventArgs e)
         {
-            ProductsForm proForm = new ProductsForm(ProductFormModeEnum.Add, null);
+            ProductsForm proForm = new ProductsForm(ProductFormModeEnum.Add, null, _service);
             proForm.ShowDialog();
+            refreshGrid();
         }
 
         private void Edit_Click(object sender, EventArgs e)
         {
-            Product? selectedProduct =  _dgvBindingSource.Current as Product;
+            Product? selectedProduct = _dgvBindingSource.Current as Product;
             if (selectedProduct != null)
             {
-                ProductsForm proForm = new ProductsForm(ProductFormModeEnum.Edit, selectedProduct);
-            proForm.ShowDialog();
+                ProductsForm proForm = new ProductsForm(ProductFormModeEnum.Edit, selectedProduct, _service);
+                proForm.ShowDialog();
+                refreshGrid();
             }
         }
 
@@ -86,9 +90,58 @@ namespace App.WindowApp.views
             Product? selectedProduct = _dgvBindingSource.Current as Product;
             if (selectedProduct != null)
             {
-                ProductsForm proForm = new ProductsForm(ProductFormModeEnum.Edit, selectedProduct);
+                ProductsForm proForm = new ProductsForm(ProductFormModeEnum.Edit, selectedProduct, _service);
                 proForm.ShowDialog();
             }
+        }
+        private void refreshGrid()
+        {
+            string searchText = textBoxSearch.Text;
+
+            ProductsCategoryEnum? selectedCategory = null;
+            if (cmbCategory.SelectedItem != null) {
+                if (cmbCategory.SelectedItem.ToString().Equals("~~ALL~~")){
+
+                    selectedCategory = null;
+                }
+                else
+                {
+                    selectedCategory = (ProductsCategoryEnum)cmbCategory.SelectedItem;
+                }
+            }
+
+            ProductsStatusEnum? selectedStatus = null;
+            if (cmbStatus.SelectedItem != null)
+            {
+                if (cmbStatus.SelectedItem.ToString().Equals("~~ALL~~"))
+                {
+
+                    selectedStatus = null;
+                }
+                else
+                {
+                    selectedStatus = (ProductsStatusEnum)cmbStatus.SelectedItem;
+                }
+            }
+
+            _dgvBindingSource.DataSource = _service.Search(searchText, selectedCategory, selectedStatus);
+        }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            refreshGrid();
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+            refreshGrid();
+
+        }
+
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refreshGrid();
+
         }
     }
 }

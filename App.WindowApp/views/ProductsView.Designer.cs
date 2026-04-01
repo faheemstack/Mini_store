@@ -45,7 +45,7 @@
             tblFilter = new TableLayoutPanel();
             cmbCategory = new ComboBox();
             cmbStatus = new ComboBox();
-            textBox1 = new TextBox();
+            textBoxSearch = new TextBox();
             search = new Label();
             StockStatus = new Label();
             Category = new Label();
@@ -182,6 +182,7 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Click += tabPage1_Click;
             // 
             // tabPage2
             // 
@@ -214,7 +215,7 @@
             tblFilter.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tblFilter.Controls.Add(cmbCategory, 1, 1);
             tblFilter.Controls.Add(cmbStatus, 2, 1);
-            tblFilter.Controls.Add(textBox1, 0, 1);
+            tblFilter.Controls.Add(textBoxSearch, 0, 1);
             tblFilter.Controls.Add(search, 0, 0);
             tblFilter.Controls.Add(StockStatus, 2, 0);
             tblFilter.Controls.Add(Category, 1, 0);
@@ -235,6 +236,7 @@
             cmbCategory.Name = "cmbCategory";
             cmbCategory.Size = new Size(184, 23);
             cmbCategory.TabIndex = 0;
+            cmbCategory.SelectedIndexChanged += cmbCategory_SelectedIndexChanged;
             // 
             // cmbStatus
             // 
@@ -246,13 +248,14 @@
             cmbStatus.TabIndex = 1;
             cmbStatus.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
-            // textBox1
+            // textBoxSearch
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(4, 31);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(248, 23);
-            textBox1.TabIndex = 2;
+            textBoxSearch.Dock = DockStyle.Fill;
+            textBoxSearch.Location = new Point(4, 31);
+            textBoxSearch.Name = "textBoxSearch";
+            textBoxSearch.Size = new Size(248, 23);
+            textBoxSearch.TabIndex = 2;
+            textBoxSearch.TextChanged += textBoxSearch_TextChanged;
             // 
             // search
             // 
@@ -417,7 +420,7 @@
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.DataGridView dgvProducts;
         private System.Windows.Forms.HScrollBar hScrollBar1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.Label search;
         private System.Windows.Forms.Label Category;
         private System.Windows.Forms.Label StockStatus;

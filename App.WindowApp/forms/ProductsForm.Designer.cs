@@ -258,8 +258,9 @@
             subPanelFooter.Location = new Point(21, 14);
             subPanelFooter.Margin = new Padding(13, 11, 13, 11);
             subPanelFooter.Name = "subPanelFooter";
-            subPanelFooter.Size = new Size(378, 56);
+            subPanelFooter.Size = new Size(466, 56);
             subPanelFooter.TabIndex = 0;
+            subPanelFooter.Paint += subPanelFooter_Paint;
             // 
             // btnSave
             // 
@@ -267,11 +268,11 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Image = Properties.Resources.save;
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSave.Location = new Point(286, 13);
+            btnSave.Location = new Point(343, 13);
             btnSave.Margin = new Padding(3, 2, 3, 2);
             btnSave.Name = "btnSave";
             btnSave.Padding = new Padding(4, 0, 4, 4);
-            btnSave.Size = new Size(77, 25);
+            btnSave.Size = new Size(98, 25);
             btnSave.TabIndex = 1;
             btnSave.Text = "Save";
             btnSave.TextAlign = ContentAlignment.MiddleRight;
@@ -294,11 +295,11 @@
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Image = Properties.Resources.cancel;
             btnCancel.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancel.Location = new Point(192, 13);
+            btnCancel.Location = new Point(238, 13);
             btnCancel.Margin = new Padding(3, 2, 3, 2);
             btnCancel.Name = "btnCancel";
             btnCancel.Padding = new Padding(4, 0, 4, 4);
-            btnCancel.Size = new Size(88, 25);
+            btnCancel.Size = new Size(99, 25);
             btnCancel.TabIndex = 0;
             btnCancel.Text = "Cancel";
             btnCancel.TextAlign = ContentAlignment.MiddleRight;
@@ -316,6 +317,7 @@
             MinimizeBox = false;
             Name = "ProductsForm";
             Text = "ProductsForm";
+            FormClosing += ProductsForm_FormClosing;
             Load += ProductsForm_Load;
             panel1.ResumeLayout(false);
             panel4.ResumeLayout(false);

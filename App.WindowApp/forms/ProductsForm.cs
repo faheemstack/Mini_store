@@ -1,4 +1,5 @@
-﻿using App.Core.models;
+﻿using App.Core.contracts;
+using App.Core.models;
 using App.Core.utilities;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,10 @@ namespace App.WindowApp.forms
 {
     public partial class ProductsForm : Form
     {
-        public ProductsForm(ProductFormModeEnum mode, Product? p)
+        ProductFormModeEnum _mode;
+        Product _product;
+        IProductServices _service;
+        public ProductsForm(ProductFormModeEnum mode, Product? p, IProductServices service)
         {
 
             InitializeComponent();
@@ -32,6 +36,9 @@ namespace App.WindowApp.forms
             comboBoxStatus.SelectedIndex = 0;
 
 
+            _mode = mode;
+            _product = p;
+            _service = service;
             if (mode == ProductFormModeEnum.Edit)
             {
                 btnSave.Text = "Update";
@@ -50,7 +57,7 @@ namespace App.WindowApp.forms
                 nudPrice.Value = p.Price;
                 nudStock.Value = p.Stock;
             }
-       
+
 
 
         }
@@ -66,15 +73,54 @@ namespace App.WindowApp.forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (_mode == ProductFormModeEnum.Add)
+            {
+                Product newProduct = new Product();
+                newProduct.Name = textBoxName.Text;
+                newProduct.Category = (ProductsCategoryEnum)comboBoxCategory.SelectedItem;
+                newProduct.Status = (ProductsStatusEnum)comboBoxStatus.SelectedItem;
+                newProduct.Price = nudPrice.Value;
+                newProduct.Stock = (int)nudStock.Value;
 
+                //_product = _service.Add(newProduct);
+                //textBoxId.Text = _product.Id;
+
+                Product temp = _service.Add(newProduct);
+                textBoxId.Text = temp?.Id ?? "";
+
+
+
+            }
+            else if (_mode == ProductFormModeEnum.Edit)
+            {
+                _product.Name = textBoxName.Text;
+                _product.Category = (ProductsCategoryEnum)comboBoxCategory.SelectedItem;
+                _product.Status = (ProductsStatusEnum)comboBoxStatus.SelectedItem;
+                _product.Price = nudPrice.Value;
+                _product.Stock = (int)nudStock.Value;
+                bool isUpdated = _service.Update(_product);
+
+
+            }
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void nudStock_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void subPanelFooter_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ProductsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
 
         }
