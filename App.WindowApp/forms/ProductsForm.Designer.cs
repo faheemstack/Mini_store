@@ -118,7 +118,7 @@
             nudPrice.Margin = new Padding(3, 2, 3, 2);
             nudPrice.Name = "nudPrice";
             nudPrice.Size = new Size(357, 23);
-            nudPrice.TabIndex = 0;
+            nudPrice.TabIndex = 2;
             // 
             // nudStock
             // 
@@ -127,7 +127,7 @@
             nudStock.Margin = new Padding(3, 2, 3, 2);
             nudStock.Name = "nudStock";
             nudStock.Size = new Size(357, 23);
-            nudStock.TabIndex = 1;
+            nudStock.TabIndex = 3;
             nudStock.ValueChanged += nudStock_ValueChanged;
             // 
             // textBoxName
@@ -137,7 +137,7 @@
             textBoxName.Margin = new Padding(3, 2, 3, 2);
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(357, 23);
-            textBoxName.TabIndex = 3;
+            textBoxName.TabIndex = 0;
             // 
             // comboBoxStatus
             // 
@@ -157,7 +157,7 @@
             comboBoxCategory.Margin = new Padding(3, 2, 3, 2);
             comboBoxCategory.Name = "comboBoxCategory";
             comboBoxCategory.Size = new Size(357, 23);
-            comboBoxCategory.TabIndex = 5;
+            comboBoxCategory.TabIndex = 1;
             // 
             // textBoxId
             // 
@@ -166,7 +166,7 @@
             textBoxId.Margin = new Padding(3, 2, 3, 2);
             textBoxId.Name = "textBoxId";
             textBoxId.Size = new Size(357, 23);
-            textBoxId.TabIndex = 6;
+            textBoxId.TabIndex = 5;
             // 
             // labelName
             // 
@@ -176,7 +176,7 @@
             labelName.Margin = new Padding(0);
             labelName.Name = "labelName";
             labelName.Size = new Size(39, 15);
-            labelName.TabIndex = 7;
+            labelName.TabIndex = 6;
             labelName.Text = "Name";
             labelName.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -188,7 +188,7 @@
             labelPrice.Margin = new Padding(0, 4, 0, 0);
             labelPrice.Name = "labelPrice";
             labelPrice.Size = new Size(33, 15);
-            labelPrice.TabIndex = 9;
+            labelPrice.TabIndex = 8;
             labelPrice.Text = "Price";
             labelPrice.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -200,7 +200,7 @@
             labelStock.Margin = new Padding(0, 4, 0, 0);
             labelStock.Name = "labelStock";
             labelStock.Size = new Size(36, 15);
-            labelStock.TabIndex = 10;
+            labelStock.TabIndex = 9;
             labelStock.Text = "Stock\r\n";
             labelStock.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -212,7 +212,7 @@
             labelStatus.Margin = new Padding(0, 4, 0, 0);
             labelStatus.Name = "labelStatus";
             labelStatus.Size = new Size(39, 15);
-            labelStatus.TabIndex = 11;
+            labelStatus.TabIndex = 10;
             labelStatus.Text = "Status";
             labelStatus.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -224,7 +224,7 @@
             labelId.Margin = new Padding(0, 4, 0, 0);
             labelId.Name = "labelId";
             labelId.Size = new Size(17, 15);
-            labelId.TabIndex = 12;
+            labelId.TabIndex = 11;
             labelId.Text = "Id";
             labelId.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -236,7 +236,7 @@
             labelCategory.Margin = new Padding(0, 4, 0, 0);
             labelCategory.Name = "labelCategory";
             labelCategory.Size = new Size(55, 15);
-            labelCategory.TabIndex = 8;
+            labelCategory.TabIndex = 7;
             labelCategory.Text = "Category";
             labelCategory.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -272,7 +272,7 @@
             btnSave.Name = "btnSave";
             btnSave.Padding = new Padding(4, 0, 4, 4);
             btnSave.Size = new Size(77, 25);
-            btnSave.TabIndex = 2;
+            btnSave.TabIndex = 1;
             btnSave.Text = "Save";
             btnSave.TextAlign = ContentAlignment.MiddleRight;
             btnSave.UseVisualStyleBackColor = true;
